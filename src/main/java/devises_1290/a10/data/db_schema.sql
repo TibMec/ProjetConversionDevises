@@ -9,7 +9,7 @@ CREATE TABLE Currency (
 
 CREATE TABLE Rate (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  value DECIMAL(18, 6) NOT NULL,
+  rate_value DECIMAL(18, 6) NOT NULL,
   id_currency INTEGER NOT NULL,
   FOREIGN KEY (id_currency) REFERENCES Currency(id)
 );

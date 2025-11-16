@@ -10,10 +10,15 @@ public class RateDAO_MockDB implements IRate_DAO {
         this.datastore = MockDB.getInstance();
     }
 
+
     @Override
-    public boolean addRate(Rate rate) {
-        datastore.getRates()
-                .add(rate);
+    public boolean updateRate(double rateValue, int id) {
+        datastore.getRates();
+        for(Rate r : datastore.getRates()){
+            if(r.getId() == id){
+                r.setValue(rateValue);
+            }
+        }
         return false;
     }
 

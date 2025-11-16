@@ -11,6 +11,11 @@ public class UserService {
     ICurrency_DAO cDaoJDBC = new CurrencyDAO_JDBC();
     IRate_DAO rDaoJDBC = new RateDAO_JDBC();
 
+    public UserService(ICurrency_DAO cDaoJDBC, IRate_DAO rDaoJDBC) {
+        this.cDaoJDBC = cDaoJDBC;
+        this.rDaoJDBC = rDaoJDBC;
+    }
+
     // Conversion = montant * (destination / source), ref USD
     public double convert(double montant, String source, String destination){
         double result = 0;
@@ -18,6 +23,20 @@ public class UserService {
         Rate rDestination = rDaoJDBC.getRateByCurrencyName(destination);
         result = montant * (rDestination.getValue() / rSource.getValue());
         return result;
+    }
+
+    //A changer pour le Rate, retourne le getRateByName
+    public Currency getCurrencyByName(String name){
+        Currency curr = cDaoJDBC.getCurrencyByName(name);
+        return curr;
+    }
+
+    public boolean updateRate(String source,double rateValue){
+        boolean updated = false;
+        Rate rSource = rDaoJDBC.getRateByCurrencyName(source);
+        int id = rSource.getId();
+        rDaoJDBC.updateRate(rateValue, id);
+        return updated;
     }
 
 }

@@ -1,20 +1,30 @@
 package devises_1290.a10.view;
 
 import devises_1290.a10.control.UserService;
+import devises_1290.a10.dal.CurrencyDAO_JDBC;
 import devises_1290.a10.dal.ICurrency_DAO;
+import devises_1290.a10.dal.RateDAO_JDBC;
 
+import devises_1290.a10.model.*;
+
+import java.util.Locale;
 import java.util.Scanner;
 
 public class UserView {
     UserService userService;
     String devise;
+    int id;
+    CurrencyDAO_JDBC cDAO_JDBC = new CurrencyDAO_JDBC();
+    RateDAO_JDBC rDAO_JDBC = new RateDAO_JDBC();
 
     public UserView() {
-        this.userService = new UserService();
+        this.userService = new UserService(cDAO_JDBC, rDAO_JDBC);
         this.devise = "";
+        this.id = 0;
     }
 
-    Scanner sc = new Scanner(System.in);
+    Scanner sc = new Scanner(System.in).useLocale(Locale.US);
+
     public void convertView(){
         String source = "", destination = "";
 
@@ -31,6 +41,23 @@ public class UserView {
         double conversion = this.userService.convert(montant, source, destination);
 
         IO.println(String.format("%.2f %s vaut %.2f %s", montant, source, conversion, destination));
+    }
+
+    public void changeRate(){
+        String source = "";
+        double rateValue = 0.0;
+
+        IO.println("Saisir la devise à modifier:");
+        source = this.menu();
+       int id = userService.getCurrencyByName(source)
+                            .getId();
+        IO.println("Saisir le nouveau taux pour cette devise:");
+        rateValue= sc.nextDouble();
+        boolean updated = rDAO_JDBC.updateRate(rateValue, id);
+        IO.println(updated ?
+                "Le taux a bien été mis à jour"
+                : "Erreur dans la mise à jour"
+                );
     }
 
     public String menu(){

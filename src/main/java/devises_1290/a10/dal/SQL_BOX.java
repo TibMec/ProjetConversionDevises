@@ -8,9 +8,9 @@ public class SQL_BOX {
                WHERE C.name = ?
                """;
     public static final String ADD_RATE = """ 
-            INSERT INTO Rate (value, id_currency)
-            VALUES
-            (?, ?)
+            UPDATE Rate
+            SET rate_value = ?
+            WHERE id_currency = ?
             """;
     public static final String FIND_RATE_BY_CURRENCY_NAME = """ 
             SELECT r.*

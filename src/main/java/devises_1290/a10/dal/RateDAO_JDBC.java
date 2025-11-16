@@ -18,19 +18,20 @@ public class RateDAO_JDBC implements IRate_DAO {
     }
 
     @Override
-    public boolean addRate(Rate rate) {
+    public boolean updateRate(double rateValue,int id) {
+        boolean updated = false;
         String query = SQL_BOX.ADD_RATE;
         try {
             PreparedStatement pStmt = this.connection.prepareStatement(query);
-            pStmt.setInt(1, rate.getId());
-            pStmt.setDouble(1, rate.getValue());
+            pStmt.setDouble(1, rateValue);
+            pStmt.setInt(2, id);
             int affectedRows = pStmt.executeUpdate();
             if (affectedRows == 1)
-                return true;
+                 updated = true;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return false;
+        return updated;
     }
 
     @Override
@@ -43,7 +44,7 @@ public class RateDAO_JDBC implements IRate_DAO {
             ResultSet rs = pStmt.executeQuery();
             if (rs.next()) {
                 int id = rs.getInt("id");
-                double value = rs.getDouble("value");
+                double value = rs.getDouble("rate_value");
                 rateFound = new Rate(id, value);
             }
         } catch (SQLException e) {
