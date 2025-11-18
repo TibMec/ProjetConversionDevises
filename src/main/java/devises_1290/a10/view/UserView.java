@@ -94,7 +94,7 @@ public class UserView {
                         break;
                     }
 } catch (InputMismatchException e) {
-                    IO.println("Entrée non valide, veuillez entrer un choix valide !");
+                    IO.println("Entrée non valide, veuillez entrer un choix valide!");
                     sc.next();
     }
 }
