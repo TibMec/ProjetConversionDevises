@@ -97,7 +97,6 @@ public class UserView {
                     IO.println("Entrée non valide, veuillez entrer un choix valide !");
                     sc.next();
     }
-
 }
    sc.close();
         return devise;
