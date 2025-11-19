@@ -7,7 +7,7 @@ public class SQL_BOX {
                FROM Currency C
                WHERE C.name = ?
                """;
-    public static final String ADD_RATE = """ 
+    public static final String UPDATE_RATE = """ 
             UPDATE Rate
             SET rate_value = ?
             WHERE id_currency = ?

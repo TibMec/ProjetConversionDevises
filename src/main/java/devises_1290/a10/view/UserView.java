@@ -1,34 +1,30 @@
 package devises_1290.a10.view;
 
 import devises_1290.a10.control.UserService;
-import devises_1290.a10.dal.CurrencyDAO_JDBC;
 import devises_1290.a10.dal.ICurrency_DAO;
-import devises_1290.a10.dal.RateDAO_JDBC;
-
-import devises_1290.a10.model.*;
+import devises_1290.a10.dal.IRate_DAO;
 
 import java.util.InputMismatchException;
 import java.util.Locale;
 import java.util.Scanner;
 
-import static java.lang.System.exit;
-
 public class UserView {
     UserService userService;
     String devise;
     int id;
-    CurrencyDAO_JDBC cDAO_JDBC = new CurrencyDAO_JDBC();
-    RateDAO_JDBC rDAO_JDBC = new RateDAO_JDBC();
+    ICurrency_DAO cDAO;
+    IRate_DAO rDAO;
 
-    public UserView() {
-        this.userService = new UserService(cDAO_JDBC, rDAO_JDBC);
+    public UserView(ICurrency_DAO currDAO, IRate_DAO rateDAO) {
+        this.userService = new UserService(currDAO, rateDAO);
         this.devise = "";
         this.id = 0;
     }
 
     Scanner sc = new Scanner(System.in).useLocale(Locale.US);
 
-    public void operationMenu()  {
+    public void operationMenu() {
+        int choix = 0;
         while (true) {
             IO.println("""
                     Choisissez une option:    
@@ -37,18 +33,18 @@ public class UserView {
                         Autre chiffre pour quitter
                     """);
             try {
-                int choix = sc.nextInt();
-                if (choix == 1)
-                    convertView();
-                else if (choix == 2)
-                    changeRateView();
-                else {
-                    System.out.println("Fin de programme");
-                    return;
-                }
+                choix = sc.nextInt();
             } catch (InputMismatchException e) {
                 System.out.println("Erreur ! Entier attendu");
                 sc.nextLine();
+            }
+            if (choix == 1)
+                changeRateView();
+            else if (choix == 2)
+                convertView();
+            else {
+                System.out.println("Fin de programme");
+                return;
             }
         }
     }
@@ -81,7 +77,7 @@ public class UserView {
                 .getId();
         IO.println("Saisir le nouveau taux pour cette devise:");
         rateValue = sc.nextDouble();
-        boolean updated = rDAO_JDBC.updateRate(rateValue, id);
+        boolean updated = userService.changeRate(source, rateValue);
         IO.println(updated ?
                 "Le taux a bien été mis à jour"
                 : "Erreur dans la mise à jour"
