@@ -8,13 +8,13 @@ public class AppView {
     public static  void main(String args[]) {
        MockDB mockDB= MockDB.getInstance();
 //        UserView userView = new UserView(new CurrencyDAO_JDBC(), new RateDAO_JDBC());
-        UserView userView = new UserView(new CurrencyDAO_MockDB(), new RateDAO_MockDB());
-//        UserView userView = new UserView(new CurrencyDAO_JPA(), new RateDAO_JPA());
+//        UserView userView = new UserView(new CurrencyDAO_MockDB(), new RateDAO_MockDB());
+        UserView userView = new UserView(new CurrencyDAO_JPA(), new RateDAO_JPA());
         userView.operationMenu();
 
-        for (Rate r: mockDB
-                .getRates()){
-            System.out.println(r);
-        }
+//        for (Rate r: mockDB
+//                .getRates()){
+//            System.out.println(r);
+//        }
     }
 }

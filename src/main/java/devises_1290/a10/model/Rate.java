@@ -3,7 +3,7 @@ package devises_1290.a10.model;
 import jakarta.persistence.*;
 
 @Entity
-
+@Table(name="Rate")
 public class Rate {
     private static int AUTOGEN_ID = 0;
 
