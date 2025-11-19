@@ -1,9 +1,24 @@
 package devises_1290.a10.model;
 
+import jakarta.persistence.*;
+
+@Entity
+
 public class Rate {
     private static int AUTOGEN_ID = 0;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
     private int id;
+
+    @Column(name="value", nullable = false, scale = 18 , precision = 6 )
+    // changer type pour BigDecimal
     private double value;
+
+    @ManyToOne
+    @JoinColumn(name="id_currency")
+    Currency curr;
 
     public Rate() {
     }

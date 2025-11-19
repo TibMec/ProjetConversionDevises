@@ -1,10 +1,21 @@
 package devises_1290.a10.dal;
 
+import devises_1290.a10.data.EntityManagerProvider;
 import devises_1290.a10.model.Currency;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 
 public class CurrencyDAO_JPA implements ICurrency_DAO {
+    EntityManager em = null;
+
+    public CurrencyDAO_JPA() {
+        this.em = EntityManagerProvider.getInstance().getEntityManager();
+    }
+
     @Override
     public Currency getCurrencyByName(String name) {
-        return null;
+        TypedQuery<Currency> query = this.em.createQuery(SQL_BOX.FIND_CURRENCY_BY_NAME, Currency.class);
+        query.setParameter("name", name);
+        return query.getSingleResult();
     }
 }

@@ -7,8 +7,11 @@ import devises_1290.a10.dal.RateDAO_JDBC;
 
 import devises_1290.a10.model.*;
 
+import java.util.InputMismatchException;
 import java.util.Locale;
 import java.util.Scanner;
+
+import static java.lang.System.exit;
 
 public class UserView {
     UserService userService;
@@ -25,7 +28,32 @@ public class UserView {
 
     Scanner sc = new Scanner(System.in).useLocale(Locale.US);
 
-    public void convertView(){
+    public void operationMenu()  {
+        while (true) {
+            IO.println("""
+                    Choisissez une option:    
+                        1. Mettre à jour la devise
+                        2. Convertir un montant
+                        Autre chiffre pour quitter
+                    """);
+            try {
+                int choix = sc.nextInt();
+                if (choix == 1)
+                    convertView();
+                else if (choix == 2)
+                    changeRateView();
+                else {
+                    System.out.println("Fin de programme");
+                    return;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Erreur ! Entier attendu");
+                sc.nextLine();
+            }
+        }
+    }
+
+    public void convertView() {
         String source = "", destination = "";
 
         IO.println("Saisir le montant à convertir:");
@@ -33,58 +61,65 @@ public class UserView {
         sc.nextLine();
 
         IO.println("Choisir la devise de départ:");
-         source = this.menu();
+        source = this.menu();
 
         IO.println("Saisir la devise d'arrivée:");
-         destination = this.menu();
+        destination = this.menu();
 
         double conversion = this.userService.convert(montant, source, destination);
 
         IO.println(String.format("%.2f %s vaut %.2f %s", montant, source, conversion, destination));
     }
 
-    public void changeRate(){
+    public void changeRateView() {
         String source = "";
         double rateValue = 0.0;
 
         IO.println("Saisir la devise à modifier:");
         source = this.menu();
-       int id = userService.getCurrencyByName(source)
-                            .getId();
+        int id = userService.getCurrencyByName(source)
+                .getId();
         IO.println("Saisir le nouveau taux pour cette devise:");
-        rateValue= sc.nextDouble();
+        rateValue = sc.nextDouble();
         boolean updated = rDAO_JDBC.updateRate(rateValue, id);
         IO.println(updated ?
                 "Le taux a bien été mis à jour"
                 : "Erreur dans la mise à jour"
-                );
+        );
     }
 
-    public String menu(){
+    public String menu() {
         IO.println("""
-            1. US Dollar
-            2. Euro
-            3. British Pound
-            4. Japanese Yen
-            5. Canadian Dollar
-            6. Australian Dollar
-        """);
+                    1. US Dollar
+                    2. Euro
+                    3. British Pound
+                    4. Japanese Yen
+                    5. Canadian Dollar
+                    6. Australian Dollar
+                """);
         int choix = sc.nextInt();
-        switch (choix){
-            case 1: devise = "US Dollar";
+        switch (choix) {
+            case 1:
+                devise = "US Dollar";
                 break;
-            case 2: devise = "Euro";
+            case 2:
+                devise = "Euro";
                 break;
-            case 3: devise = "British Pound";
+            case 3:
+                devise = "British Pound";
                 break;
-            case 4: devise = "Japanese Yen";
+            case 4:
+                devise = "Japanese Yen";
                 break;
-            case 5: devise = "Canadian Dollar";
+            case 5:
+                devise = "Canadian Dollar";
                 break;
-            case 6: devise = "Australian Dollar";
+            case 6:
+                devise = "Australian Dollar";
                 break;
-            default: IO.println("Veuillez saisir un entier parmi les options !");
-                    devise = "Canadian Dollar";
+            default:
+                IO.println("Veuillez saisir un entier parmi les options !");
+                devise = "Canadian Dollar";
         }
         return devise;
     }
