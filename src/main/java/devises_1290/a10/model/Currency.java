@@ -21,6 +21,8 @@ public class Currency {
     @Column(name="country", length = 150, nullable = false)
     private String country;
 
+    @OneToMany
+    @JoinColumn(name="rates")
     private List<Rate> rates;
 
     public Currency() {

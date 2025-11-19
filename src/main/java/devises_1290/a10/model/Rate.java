@@ -12,13 +12,15 @@ public class Rate {
     @Column(name="id")
     private int id;
 
-    @Column(name="value", nullable = false, scale = 18 , precision = 6 )
+    @Column(name="value", nullable = false )
     // changer type pour BigDecimal
     private double value;
 
-    @ManyToOne
-    @JoinColumn(name="id_currency")
-    Currency curr;
+    @ManyToOne(
+            fetch = FetchType.LAZY
+    )
+    @JoinColumn(name="currency")
+    Currency currency;
 
     public Rate() {
     }

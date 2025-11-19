@@ -5,6 +5,7 @@ import devises_1290.a10.model.Currency;
 import devises_1290.a10.model.Rate;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 
 public class RateDAO_JPA implements IRate_DAO {
@@ -36,11 +37,11 @@ public class RateDAO_JPA implements IRate_DAO {
 
     @Override
     public Rate getRateByCurrencyName(String name) {
-        TypedQuery<Rate> query = this.em.createQuery(SQL_BOX.FIND_RATE_BY_CURRENCY_NAME, Rate.class);
+       Query query = this.em.createQuery(SQL_BOX.FIND_RATE_BY_CURRENCY_NAME_JPA, Rate.class);
         query.setParameter("name", name);
         int d = query.executeUpdate();
         System.out.println("lignes changees "+d);
-        return query.getSingleResult();
+        return (Rate) query.getSingleResult();
     }
 
 
