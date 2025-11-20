@@ -7,6 +7,11 @@ public class SQL_BOX {
                FROM Currency C
                WHERE C.name = ?
                """;
+    public static final String FIND_CURRENCY_BY_NAME_JPA = """ 
+               SELECT c
+               FROM Currency c
+               WHERE c.name = :name
+               """;
     public static final String UPDATE_RATE = """ 
             UPDATE Rate
             SET rate_value = ?
@@ -14,7 +19,7 @@ public class SQL_BOX {
             """;
     public static final String UPDATE_RATE_JPA = """ 
             UPDATE Rate
-            SET rate_value = ?
+            SET rate_value = :rate_value
             WHERE id_currency = :id_currency
             """;
     public static final String FIND_RATE_BY_CURRENCY_NAME = """ 

@@ -14,7 +14,7 @@ public class CurrencyDAO_JPA implements ICurrency_DAO {
 
     @Override
     public Currency getCurrencyByName(String name) {
-        TypedQuery<Currency> query = this.em.createQuery(SQL_BOX.FIND_CURRENCY_BY_NAME, Currency.class);
+        TypedQuery<Currency> query = this.em.createQuery(SQL_BOX.FIND_CURRENCY_BY_NAME_JPA, Currency.class);
         query.setParameter("name", name);
         return query.getSingleResult();
     }
