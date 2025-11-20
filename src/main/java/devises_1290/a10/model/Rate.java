@@ -4,6 +4,12 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name="Rate")
+@NamedQuery(name = "Rate.findRateByCurrencyName", query = """
+                    SELECT r
+                    FROM Rate r
+                    JOIN r.currency c
+                    WHERE c.name = :name
+                   """)
 public class Rate {
     private static int AUTOGEN_ID = 0;
 
@@ -12,14 +18,14 @@ public class Rate {
     @Column(name="id")
     private int id;
 
-    @Column(name="value", nullable = false )
+    @Column(name="rate_value", nullable = false )
     // changer type pour BigDecimal
     private double value;
 
     @ManyToOne(
             fetch = FetchType.LAZY
     )
-    @JoinColumn(name="currency")
+    @JoinColumn(name="id_currency")
     Currency currency;
 
     public Rate() {

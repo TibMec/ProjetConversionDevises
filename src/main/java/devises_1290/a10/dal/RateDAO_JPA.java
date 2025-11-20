@@ -22,10 +22,11 @@ public class RateDAO_JPA implements IRate_DAO {
 
         try {
             EntityTransaction transaction = this.em.getTransaction();
+            transaction.begin();
             Rate r = this.em.find(Rate.class, id);
             r.setValue(rateValue);
-            transaction.commit();
             this.em.merge(r);
+            transaction.commit();
             if (em.find(Rate.class, id).getValue() == rateValue) {
                 updated = true;
             }
@@ -37,11 +38,18 @@ public class RateDAO_JPA implements IRate_DAO {
 
     @Override
     public Rate getRateByCurrencyName(String name) {
-       Query query = this.em.createQuery(SQL_BOX.FIND_RATE_BY_CURRENCY_NAME_JPA, Rate.class);
-        query.setParameter("name", name);
-        int d = query.executeUpdate();
-        System.out.println("lignes changees "+d);
-        return (Rate) query.getSingleResult();
+//       Query query = this.em.createQuery(SQL_BOX.FIND_RATE_BY_CURRENCY_NAME_JPA, Rate.class);
+//        query.setParameter("name", name);
+//        int d = query.executeUpdate();
+//        System.out.println("lignes changees "+d);
+//        return (Rate) query.getSingleResult();
+        EntityManager em = EntityManagerProvider.getInstance().getEntityManager();
+        try {
+            return em.createNamedQuery("Rate.findRateByCurrencyName", Rate.class).setParameter("name", name)
+                    .getSingleResult();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
 

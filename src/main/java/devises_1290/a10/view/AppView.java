@@ -2,6 +2,7 @@ package devises_1290.a10.view;
 
 import devises_1290.a10.dal.*;
 import devises_1290.a10.data.MockDB;
+import devises_1290.a10.model.Currency;
 import devises_1290.a10.model.Rate;
 
 public class AppView {
@@ -16,5 +17,9 @@ public class AppView {
 //                .getRates()){
 //            System.out.println(r);
 //        }
+//        CurrencyDAO_JPA cJ = new CurrencyDAO_JPA();
+//        Currency curr = cJ.findById(5);
+//        IO.println(curr);
+
     }
 }

@@ -1,13 +1,13 @@
 INSERT INTO Currency (name, country)
-                   VALUES
-                       ('US Dollar', 'United States'),
-                       ('Euro', 'European Union'),
-                       ('British Pound', 'United Kingdom'),
-                       ('Japanese Yen', 'Japan'),
-                       ('Canadian Dollar', 'Canada'),
-                       ('Australian Dollar', 'Australia');
+VALUES
+   ('US Dollar', 'United States'),
+   ('Euro', 'European Union'),
+   ('British Pound', 'United Kingdom'),
+   ('Japanese Yen', 'Japan'),
+   ('Canadian Dollar', 'Canada'),
+   ('Australian Dollar', 'Australia');
 
-INSERT INTO Rate (Rate.rate_value, id_currency)
+INSERT INTO Rate (rate_value, id_currency)
 VALUES
     (1.0000, 1),
     (0.8602, 2),

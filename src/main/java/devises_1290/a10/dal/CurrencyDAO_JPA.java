@@ -18,4 +18,13 @@ public class CurrencyDAO_JPA implements ICurrency_DAO {
         query.setParameter("name", name);
         return query.getSingleResult();
     }
+
+    //Pour Test, a enlever
+    public Currency findById(int id){
+        return this.em.find(Currency.class, id);
+    }
+    //Pour Test, a enlever
+//    public Currency findAll(int id){
+//        return this.em.createQuery("");
+//    }
 }

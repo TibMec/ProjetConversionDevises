@@ -30,4 +30,5 @@ public class SQL_BOX {
             JOIN r.currency c
             WHERE c.name = :name
     """;
+
 }

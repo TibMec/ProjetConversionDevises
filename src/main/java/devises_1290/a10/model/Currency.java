@@ -21,25 +21,19 @@ public class Currency {
     @Column(name="country", length = 150, nullable = false)
     private String country;
 
-    @OneToMany
-    @JoinColumn(name="rates")
-    private List<Rate> rates;
 
     public Currency() {
-        this.rates = new ArrayList<>();
     }
     public Currency(int id, String name, String country) {
         this.id = id;
         this.name = name;
         this.country = country;
-        this.rates = new ArrayList<>();
     }
 
     public Currency(String name, String country) {
         this.id = AUTOGEN_ID++;
         this.name = name;
         this.country = country;
-        this.rates = new ArrayList<>();
     }
 
     public int getId() {
