@@ -14,26 +14,27 @@ public class UserService {
         this.rateDAO = rateDAO;
     }
 
-    // Conversion = montant * (destination / source), ref USD
-    public double convert(double montant, String source, String destination){
-        double result = 0;
-        Rate rSource = rateDAO.getRateByCurrencyName(source);
-        Rate rDestination = rateDAO.getRateByCurrencyName(destination);
+    public double convert(double montant, String source, String destination) {
+        double result = (double)0.0F;
+        Rate rSource = this.rateDAO.getRateByCurrencyName(source);
+        Rate rDestination = this.rateDAO.getRateByCurrencyName(destination);
         result = montant * (rDestination.getValue() / rSource.getValue());
         return result;
     }
 
-    //A changer pour le Rate, retourne le getRateByName
-    public Currency getCurrencyByName(String name){
-        return currDAO.getCurrencyByName(name);
+    public Currency getCurrencyByName(String name) {
+        return this.currDAO.getCurrencyByName(name);
     }
 
-    public boolean changeRate(String source, double rateValue){
+    public Rate getRateByName(String currencyName) {
+        return this.rateDAO.getRateByCurrencyName(currencyName);
+    }
+
+    public boolean changeRate(String source, double rateValue) {
         boolean updated = false;
-        Rate rSource = rateDAO.getRateByCurrencyName(source);
+        Rate rSource = this.rateDAO.getRateByCurrencyName(source);
         int id = rSource.getId();
-        updated = rateDAO.updateRate(rateValue, id);
-        return updated ;
+        updated = this.rateDAO.updateRate(rateValue, id);
+        return updated;
     }
-
 }
