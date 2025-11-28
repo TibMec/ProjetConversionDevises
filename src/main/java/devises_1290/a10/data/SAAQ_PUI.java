@@ -58,9 +58,8 @@ public class SAAQ_PUI implements PersistenceUnitInfo {
     @Override
     public List<String> getManagedClassNames() {
         List<String> managedClasses = new ArrayList<>();
-        managedClasses.add("model.Make");
-        managedClasses.add("model.Car");
-        managedClasses.add("model.Driver");
+        managedClasses.add("model.Currency");
+        managedClasses.add("model.Rate");
         return managedClasses;
     }
 

@@ -5,9 +5,6 @@ import devises_1290.a10.dal.CurrencyDAO_JDBC;
 import devises_1290.a10.dal.ICurrency_DAO;
 import devises_1290.a10.dal.RateDAO_JDBC;
 
-import java.nio.channels.ScatteringByteChannel;
-import java.util.InputMismatchException;
-
 import devises_1290.a10.model.*;
 
 import java.util.Locale;
@@ -62,43 +59,34 @@ public class UserView {
                 : "Erreur dans la mise à jour"
                 );
     }
-    private String menu() {
-        int choix = 0;
-        while (true) {
-            try {
-                IO.println("Veuillez entrer votre choix (1-6):");
-                choix = sc.nextInt();
-                switch (choix) {
-                    case 1:
-                        devise = "US Dollar";
-                        break;
-                    case 2:
-                        devise = "Euro";
-                        break;
-                    case 3:
-                        devise = "British Pound";
-                        break;
-                    case 4:
-                        devise = "Japanese Yen";
-                        break;
-                    case 5:
-                        devise = "Canadian Dollar";
-                        break;
-                    case 6:
-                        devise = "Australian Dollar";
-                        break;
-                    default:
-                        IO.println("Veuillez saisir un entier parmi les options !");
-    }
-                    if ( choix < 1 && choix > 6) {
-                        break;
-                    }
-} catch (InputMismatchException e) {
-                    IO.println("Entrée non valide, veuillez entrer un choix valide!");
-                    sc.next();
-    }
-}
-   sc.close();
+
+    public String menu(){
+        IO.println("""
+            1. US Dollar
+            2. Euro
+            3. British Pound
+            4. Japanese Yen
+            5. Canadian Dollar
+            6. Australian Dollar
+        """);
+        int choix = sc.nextInt();
+        switch (choix){
+            case 1: devise = "US Dollar";
+                break;
+            case 2: devise = "Euro";
+                break;
+            case 3: devise = "British Pound";
+                break;
+            case 4: devise = "Japanese Yen";
+                break;
+            case 5: devise = "Canadian Dollar";
+                break;
+            case 6: devise = "Australian Dollar";
+                break;
+            default: IO.println("Veuillez saisir un entier parmi les options !");
+                    devise = "Canadian Dollar";
+        }
         return devise;
     }
+
 }

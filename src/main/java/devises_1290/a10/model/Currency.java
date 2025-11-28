@@ -1,10 +1,26 @@
 package devises_1290.a10.model;
 
+import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+@Table(name="Currency")
 public class Currency {
     private static int AUTOGEN_ID = 0;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
     private int id;
+
+    @Column(name="name", length = 150, nullable = false)
     private String name;
+
+    @Column(name="country", length = 150, nullable = false)
     private String country;
+
 
     public Currency() {
     }
