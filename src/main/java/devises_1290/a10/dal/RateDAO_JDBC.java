@@ -1,6 +1,5 @@
 package devises_1290.a10.dal;
 
-import devises_1290.a10.model.Currency;
 import devises_1290.a10.model.Rate;
 
 import java.sql.Connection;
@@ -20,7 +19,7 @@ public class RateDAO_JDBC implements IRate_DAO {
     @Override
     public boolean updateRate(double rateValue,int id) {
         boolean updated = false;
-        String query = SQL_BOX.ADD_RATE;
+        String query = SQL_BOX.UPDATE_RATE;
         try {
             PreparedStatement pStmt = this.connection.prepareStatement(query);
             pStmt.setDouble(1, rateValue);
