@@ -27,7 +27,7 @@ public class UserViewConsole {
         int choix = 0;
         while (true) {
             IO.println("""
-                    Choisissez une option:    
+                    Choisissez une option:
                         1. Mettre à jour la devise
                         2. Convertir un montant
                         Autre chiffre pour quitter
@@ -73,8 +73,6 @@ public class UserViewConsole {
 
         IO.println("Saisir la devise à modifier:");
         source = this.menu();
-        int id = userService.getCurrencyByName(source)
-                .getId();
         IO.println("Saisir le nouveau taux pour cette devise:");
         rateValue = sc.nextDouble();
         boolean updated = userService.changeRate(source, rateValue);

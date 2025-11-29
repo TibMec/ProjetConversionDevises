@@ -1,15 +1,11 @@
 package devises_1290.a10.model;
 
+import devises_1290.a10.dal.SQL_BOX;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name="Rate")
-@NamedQuery(name = "Rate.findRateByCurrencyName", query = """
-                    SELECT r
-                    FROM Rate r
-                    JOIN r.currency c
-                    WHERE c.name = :name
-                   """)
+@NamedQuery(name = "Rate.findRateByCurrencyName", query = SQL_BOX.FIND_RATE_BY_CURRENCY_NAME_JPA)
 public class Rate {
     private static int AUTOGEN_ID = 0;
 

@@ -18,7 +18,6 @@ public class Currency {
     @Column(name="country", length = 100, nullable = false)
     private String country;
 
-
     public Currency() {
     }
     public Currency(int id, String name, String country) {
@@ -47,14 +46,6 @@ public class Currency {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
     }
 
     @Override
