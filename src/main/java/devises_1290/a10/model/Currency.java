@@ -2,9 +2,6 @@ package devises_1290.a10.model;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Entity
 @Table(name="Currency")
 public class Currency {
@@ -15,10 +12,10 @@ public class Currency {
     @Column(name="id")
     private int id;
 
-    @Column(name="name", length = 150, nullable = false)
+    @Column(name="name", length = 100, nullable = false)
     private String name;
 
-    @Column(name="country", length = 150, nullable = false)
+    @Column(name="country", length = 100, nullable = false)
     private String country;
 
 

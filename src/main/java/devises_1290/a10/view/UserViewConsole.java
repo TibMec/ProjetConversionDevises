@@ -8,14 +8,14 @@ import java.util.InputMismatchException;
 import java.util.Locale;
 import java.util.Scanner;
 
-public class UserView {
+public class UserViewConsole {
     UserService userService;
     String devise;
     int id;
     ICurrency_DAO cDAO;
     IRate_DAO rDAO;
 
-    public UserView(ICurrency_DAO currDAO, IRate_DAO rateDAO) {
+    public UserViewConsole(ICurrency_DAO currDAO, IRate_DAO rateDAO) {
         this.userService = new UserService(currDAO, rateDAO);
         this.devise = "";
         this.id = 0;

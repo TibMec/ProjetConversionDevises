@@ -23,7 +23,6 @@ public class UserService {
         return result;
     }
 
-    //A changer pour le Rate, retourne le getRateByName
     public Currency getCurrencyByName(String name){
         return currDAO.getCurrencyByName(name);
     }

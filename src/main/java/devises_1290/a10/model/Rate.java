@@ -19,7 +19,6 @@ public class Rate {
     private int id;
 
     @Column(name="rate_value", nullable = false )
-    // changer type pour BigDecimal
     private double value;
 
     @ManyToOne(
