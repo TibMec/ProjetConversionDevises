@@ -12,16 +12,16 @@ public class AppView {
 //        UserViewConsole userViewConsole = new UserViewConsole(new RateDAO_MockDB());
 
        /* Pour data via connexion JDBC */
-//        UserViewConsole userViewConsole = new UserViewConsole(new RateDAO_JDBC());
+        UserViewConsole userViewConsole = new UserViewConsole(new RateDAO_JDBC());
 
        /* Pour data via connexion JPA */
-        UserViewConsole userViewConsole = new UserViewConsole(new RateDAO_JPA());
+//        UserViewConsole userViewConsole = new UserViewConsole(new RateDAO_JPA());
 
         /* Lancer l'application :*/
             /* par console*/
-//            userViewConsole.operationMenu();
+            userViewConsole.operationMenu();
             /* par interface graphique */
-            UserViewGraphique userViewGraphique = new UserViewGraphique(new RateDAO_JDBC());
+//            UserViewGraphique userViewGraphique = new UserViewGraphique(new RateDAO_JDBC());
 
         /* Verifier que les taux ont bien changé dans le MockDB */
 //        for (Rate r: mockDB
