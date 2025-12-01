@@ -1,16 +1,12 @@
 package devises_1290.a10.control;
 
-import devises_1290.a10.dal.ICurrency_DAO;
 import devises_1290.a10.dal.IRate_DAO;
-import devises_1290.a10.model.Currency;
 import devises_1290.a10.model.Rate;
 
 public class UserService {
-    ICurrency_DAO currDAO;
     IRate_DAO rateDAO;
 
-    public UserService(ICurrency_DAO currDAO, IRate_DAO rateDAO) {
-        this.currDAO = currDAO;
+    public UserService( IRate_DAO rateDAO) {
         this.rateDAO = rateDAO;
     }
 
@@ -23,8 +19,8 @@ public class UserService {
         return result;
     }
 
-    public Currency getCurrencyByName(String name){
-        return currDAO.getCurrencyByName(name);
+    public Rate getRateByCurrencyName(String currencyName) {
+        return this.rateDAO.getRateByCurrencyName(currencyName);
     }
 
     public boolean changeRate(String source, double rateValue){
@@ -34,5 +30,4 @@ public class UserService {
         updated = rateDAO.updateRate(rateValue, id);
         return updated ;
     }
-
 }

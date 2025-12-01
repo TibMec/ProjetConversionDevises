@@ -23,5 +23,11 @@ public class SQL_BOX {
             JOIN Currency c ON r.id_currency = c.id
             WHERE c.name = ?
             """;
+    public static final String FIND_RATE_BY_CURRENCY_NAME_JPA = """
+            SELECT r
+            FROM Rate r
+            JOIN r.currency c
+            WHERE c.name = :name
+           """;
 
 }

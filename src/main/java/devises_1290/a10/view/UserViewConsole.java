@@ -1,7 +1,6 @@
 package devises_1290.a10.view;
 
 import devises_1290.a10.control.UserService;
-import devises_1290.a10.dal.ICurrency_DAO;
 import devises_1290.a10.dal.IRate_DAO;
 
 import java.util.InputMismatchException;
@@ -12,11 +11,10 @@ public class UserViewConsole {
     UserService userService;
     String devise;
     int id;
-    ICurrency_DAO cDAO;
     IRate_DAO rDAO;
 
-    public UserViewConsole(ICurrency_DAO currDAO, IRate_DAO rateDAO) {
-        this.userService = new UserService(currDAO, rateDAO);
+    public UserViewConsole(IRate_DAO rateDAO) {
+        this.userService = new UserService(rateDAO);
         this.devise = "";
         this.id = 0;
     }
@@ -73,8 +71,6 @@ public class UserViewConsole {
 
         IO.println("Saisir la devise à modifier:");
         source = this.menu();
-        int id = userService.getCurrencyByName(source)
-                .getId();
         IO.println("Saisir le nouveau taux pour cette devise:");
         rateValue = sc.nextDouble();
         boolean updated = userService.changeRate(source, rateValue);
