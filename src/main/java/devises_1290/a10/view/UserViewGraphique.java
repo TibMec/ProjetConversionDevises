@@ -1,15 +1,12 @@
 package devises_1290.a10.view;
 
 import devises_1290.a10.control.UserService;
-import devises_1290.a10.dal.ICurrency_DAO;
 import devises_1290.a10.dal.IRate_DAO;
 import devises_1290.a10.model.Rate;
 import java.awt.Component;
 import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.NumberFormat;
-import java.util.Locale;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -31,7 +28,6 @@ public class UserViewGraphique extends JFrame implements ActionListener {
     private JComboBox<String> combo1;
     private JComboBox<String> combo2;
     private UserService userService;
-    private ICurrency_DAO cDAO;
     private IRate_DAO rDAO;
 
     public UserViewGraphique(IRate_DAO rateDAO) {
