@@ -12,10 +12,10 @@ public class AppView {
 //        UserViewConsole userViewConsole = new UserViewConsole(new RateDAO_MockDB());
 
        /* Pour data via connexion JDBC */
-        UserViewConsole userViewConsole = new UserViewConsole(new RateDAO_JDBC());
+//        UserViewConsole userViewConsole = new UserViewConsole(new RateDAO_JDBC());
 
        /* Pour data via connexion JPA */
-//        UserViewConsole userViewConsole = new UserViewConsole(new RateDAO_JPA());
+        UserViewConsole userViewConsole = new UserViewConsole(new RateDAO_JPA());
 
         /* Lancer l'application :*/
             /* par console*/
