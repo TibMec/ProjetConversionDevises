@@ -87,6 +87,14 @@ public class UserViewConsole {
     private String menu() {
         int choix = 0;
         while (true) {
+            IO.println("""
+                    1. US Dollar
+                    2. Euro
+                    3. British Pound
+                    4. Japanese Yen
+                    5. Canadian Dollar
+                    6. Australian Dollar
+                """);
             try {
                 IO.println("Veuillez entrer votre choix (1-6):");
                 choix = sc.nextInt();
