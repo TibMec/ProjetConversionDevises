@@ -1,0 +1,2 @@
+Currency(id[PK], name, country)
+Rate(id[PK], value, id[Currency][FK])
